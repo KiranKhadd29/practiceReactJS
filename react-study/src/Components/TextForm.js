@@ -24,17 +24,23 @@ export default function TextForm(props) {
       setText(newText);
   }
 
-    const handleParaClick = () =>{
+    const handleCopyClick = () =>{
       debugger;
-      //console.log("Para Count was clicked" + text);
-      let newText = text.includes("\n").toString();
-      setText(newText);
+      //console.log("Copy Text was clicked" + text);
+      let copyText = document.getElementById('myBox');
+      copyText.select();
+      navigator.clipboard.writeText(copyText.value);
   }
 
   const handleClearTextClick = () =>{
     //console.log("Clear Text was clicked" + text);
     let newText = '';
     setText(newText);
+  }
+
+  const handleExtraSpaceClick = () => {
+    let newText = text.split(/[  ]+/);
+    setText(newText.join(' '));
   }
 
     const handleOnChange = (event) =>{
@@ -57,8 +63,10 @@ export default function TextForm(props) {
           <button className="btn btn-secondary mx-1" onClick={handleRedoClick}>Redo </button>
           <button className="btn btn-primary mx-1" onClick={handleUpClick}>Convert to UpperCase </button>
           <button className="btn btn-primary mx-1" onClick={handleLowClick}>Convert to LowerCase </button>
-          <button className="btn btn-primary mx-1" onClick={handleParaClick}>Paragraph Count </button>
+          <button className="btn btn-primary mx-1" onClick={handleCopyClick}>Copy Text </button>
           <button className="btn btn-primary mx-1" onClick={handleClearTextClick}>Clear Text </button>
+          <button className="btn btn-primary mx-1" onClick={handleExtraSpaceClick}>Remove Extra Spaces </button>
+
       </div>
     </div>
     <div className='container my-3'>
