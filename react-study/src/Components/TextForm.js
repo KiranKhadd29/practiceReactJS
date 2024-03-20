@@ -6,22 +6,26 @@ export default function TextForm(props) {
     //console.log("Undo was clicked" + text);
     let newText = text;
     setText(newText);
+    //props.showAlerts("Undo Success", "success");
 }
   const handleRedoClick = () =>{
     //console.log("Redo was clicked" + text);
     let newText = text;
     setText(newText);
+    //props.showAlerts("Redo Success", "success");
   }
     const handleUpClick = () =>{
         //console.log("Upparcase was clicked" + text);
         let newText = text.toUpperCase();
         setText(newText);
+        props.showAlerts("Text is now in Uppercase", "success");
     }
 
     const handleLowClick = () =>{
       //console.log("Lowercase was clicked" + text);
       let newText = text.toLowerCase();
       setText(newText);
+      props.showAlerts("Text is now in Lowercase", "success");
   }
 
     const handleCopyClick = () =>{
@@ -30,17 +34,20 @@ export default function TextForm(props) {
       let copyText = document.getElementById('myBox');
       copyText.select();
       navigator.clipboard.writeText(copyText.value);
+      props.showAlerts("Text is copied to clipboard", "success");
   }
 
   const handleClearTextClick = () =>{
     //console.log("Clear Text was clicked" + text);
     let newText = '';
     setText(newText);
+    props.showAlerts("Text is cleared!", "success");
   }
 
   const handleExtraSpaceClick = () => {
     let newText = text.split(/[  ]+/);
     setText(newText.join(' '));
+    props.showAlerts("Extra space is removed!", "success");
   }
 
     const handleOnChange = (event) =>{
