@@ -1,6 +1,20 @@
 import React, { useState } from 'react'
 
 export default function TextForm(props) {
+  
+
+  const wordStringCount = () =>{
+    let newText = text.trim();
+    let textCount;
+    if (newText!== null  && newText !== "" && newText !== undefined )
+    {
+      textCount = text.split(" ").length;
+    }
+    else{
+      textCount = 0;
+    }
+    return textCount;
+  }
 
   const handleUndoClick = () =>{
     //console.log("Undo was clicked" + text);
@@ -57,7 +71,7 @@ export default function TextForm(props) {
     }
     const [text, setText] = useState("");
     //text = "new text" // wrong way to change the state
-    //setText = {"new text"} // correct way to change the state
+    //setText = {"new text"}; // correct way to change the state
   return (
     <>
     <div className='container' style= {{color : props.mode === 'dark'?'white':'#1a3358'}}>
@@ -78,7 +92,7 @@ export default function TextForm(props) {
     </div>
     <div className='container my-3' style= {{color : props.mode === 'dark'?'white':'#1a3358'}}>
       <h2>Your Text Summary</h2>
-      <p>{text.split(" ").length} words and {text.length} characters </p>
+      <p>{wordStringCount(text)} words and {text.length} characters </p>
       <p>{0.08 * text.split(" ").length} minute to read </p>
       <h3>Preview</h3>
       <p>{text.length>0?text:"Enter something to preview!"}</p>
