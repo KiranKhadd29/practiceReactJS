@@ -7,7 +7,7 @@ import TextForm from "./Components/TextForm";
 import { useState } from "react";
 
 function App() {
-  const [mode, setMode] = useState ('dark');
+  const [mode, setMode] = useState ('light');
   const [alerts, setAlerts] = useState (null);
 
   const showAlerts = (message, type) => {
@@ -24,22 +24,23 @@ function App() {
 
 
   const toggleMode =() => {
-    if(mode === 'light')
-    {
-      setMode('dark');
-      document.body.style.backgroundColor=('#1a3358');
-      showAlerts("Dark mode is enabled","success");
-    }
-    else
+    if(mode === 'dark')
     {
       setMode('light');
       document.body.style.backgroundColor=('white');
       showAlerts("Light mode is enabled","success");
     }
+    else
+    {
+      setMode('dark');
+      document.body.style.backgroundColor=('#1a3358');
+      showAlerts("Dark mode is enabled","success");
+      
+    }
   }
   return (
     <>
-    <Navbar title="TextUtils" mode = {mode} toggleMode = {toggleMode} />
+    <Navbar title="TextUtils" mode = {mode} toggleMode = {toggleMode}   />
     <Alerts alerts = {alerts}/>
     <div className="container my-3">
       {/*<AboutUs/>*/}

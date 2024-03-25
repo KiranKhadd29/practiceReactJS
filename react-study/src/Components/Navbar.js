@@ -1,6 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types';
 export default function Navbar(props) {
+
+  const switchText = () =>{
+    let setText = '';
+    if(props.mode === 'dark'){
+      setText = 'Light';
+    }
+    else{
+      setText = 'Dark';
+    }
+    return setText;
+  }
+
   return (
     <nav className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}>
   <div className="container-fluid">
@@ -19,7 +31,7 @@ export default function Navbar(props) {
       </ul>
       <div className={`form-check form-switch text-${props.mode === 'dark'?'grey':'light'}`} > 
         <input className="form-check-input" onClick={props.toggleMode} type="checkbox" role="switch" id="flexSwitchCheckDefault" />
-        <label className={`form-check-label text-${props.mode === 'light'?'black':'light'}`} htmlFor="flexSwitchCheckDefault"> Enable </label>
+        <label className={`form-check-label text-${props.mode === 'light'?'black':'light'}`} htmlFor="flexSwitchCheckDefault">{switchText(props.mode)} Mode </label>
       </div>
       {/* <form className="d-flex me-2" role="search">
         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
@@ -39,4 +51,6 @@ Navbar.defaultProps = {
     title: 'TextUtils',
     aboutText: 'About'
 }
+
+
  
