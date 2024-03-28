@@ -3,10 +3,31 @@
 import Alerts from "./Components/Alerts";
 import Navbar from "./Components/Navbar";
 import TextForm from "./Components/TextForm";
-//import AboutUs from "./Components/AboutUs";
 import { useState } from "react";
-
+//import { createBrowserRouter, RouterProvider } from "react-router-dom";
+// import { BrowserRouter, Routes, Route } from 'react-router-dom';
 function App() {
+  // const router = createBrowserRouter([
+  //   {
+  //     path: "/aboutUs",
+  //     element:<><Navbar/><AboutUs/></>
+  //   },
+  //   {
+  //     path: "/",
+  //     element: <><Navbar/><TextForm/> </>
+  //   }
+
+  // ])
+
+  // <BrowserRouter>
+  //     <Routes>
+  //       <Route path="/" element={<Home />}>
+  //         <Route index element={<App />} />
+  //         <Route path="aboutUs" element={<AboutUs />} />
+  //         {/* <Route path="*" element={<NoPage />} /> */}
+  //       </Route>
+  //     </Routes>
+  //   </BrowserRouter>
   const [mode, setMode] = useState ('light');
   const [alerts, setAlerts] = useState (null);
 
@@ -41,10 +62,11 @@ function App() {
   return (
     <>
     <Navbar title="TextUtils" mode = {mode} toggleMode = {toggleMode}   />
+    {/* <RouterProvider router={router} /> */}
     <Alerts alerts = {alerts}/>
     <div className="container my-3">
       {/*<AboutUs/>*/}
-      <TextForm showAlerts = {showAlerts} heading = "Enter text below" mode ={mode} />
+      <TextForm showAlerts = {showAlerts} heading = "Try TextUtils - Word/Character Counter | Uppercase | Lowercase | Remove extra spaces" mode ={mode} />
     </div>
     </>
   );

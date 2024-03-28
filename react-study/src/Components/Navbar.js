@@ -1,10 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types';
+//import { Link } from 'react-router-dom';
 export default function Navbar(props) {
 
   const switchText = () =>{
     let setText = '';
-    if(props.mode === 'dark'){
+    if(props.mode === 'dark'){ 
       setText = 'Light';
     }
     else{
@@ -23,11 +24,11 @@ export default function Navbar(props) {
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
       <ul className="navbar-nav me-auto mb-2 mb-lg-0">
         <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="/">Home</a>
+          <a className="nav-link" aria-current="page" href="/home">Home</a>
         </li>
-        <li className="nav-item">
-          <a className="nav-link" href="/">{props.aboutText}</a>
-        </li>
+        {/* <li className="nav-item">
+          <a className="nav-link" href="/aboutUS">{props.aboutText} </a>
+        </li> */}
       </ul>
       <div className={`form-check form-switch text-${props.mode === 'dark'?'grey':'light'}`} > 
         <input className="form-check-input" onClick={props.toggleMode} type="checkbox" role="switch" id="flexSwitchCheckDefault" />

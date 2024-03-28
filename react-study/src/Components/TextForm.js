@@ -8,7 +8,7 @@ export default function TextForm(props) {
     let textCount;
     if (newText!== null  && newText !== "" && newText !== undefined )
     {
-      textCount = text.split(" ").length;
+      textCount = text.split(/\s+/).filter((element)=>{return element.length !== 0}).length;
     }
     else{
       textCount = 0;
@@ -45,9 +45,10 @@ export default function TextForm(props) {
     const handleCopyClick = () =>{
       debugger;
       //console.log("Copy Text was clicked" + text);
-      let copyText = document.getElementById('myBox');
-      copyText.select();
-      navigator.clipboard.writeText(copyText.value);
+      // let copyText = document.getElementById('myBox');
+      // copyText.select();
+      navigator.clipboard.writeText(text);
+      // document.getSelection().removeAllRanges();
       props.showAlerts("Text is copied to clipboard", "success");
   }
 
@@ -75,25 +76,25 @@ export default function TextForm(props) {
   return (
     <>
     <div className='container' style= {{color : props.mode === 'dark'?'white':'#1a3358'}}>
-      <h1 style= {{color : props.mode === 'dark'?'white':'#1a3358'}}>{props.heading}</h1>
+      <h2 style= {{color : props.mode === 'dark'?'white':'#1a3358'}}>{props.heading}</h2>
       <div className="mb-3">
           {/*<label for="myBox" className="form-label">Example textarea</label>*/}
           <textarea className="form-control" id="myBox" onChange={handleOnChange} value={text} style= {{backgraoundColor : props.mode === 'dark'?'grey':'light', color : props.mode === 'dark'?'#1a3358':'#1a3358'}} placeholder="Enter Text Here ..." rows="8"></textarea>
           <p></p>
-          <button className="btn btn-secondary mx-1" onClick={handleUndoClick}>Undo </button>
-          <button className="btn btn-secondary mx-1" onClick={handleRedoClick}>Redo </button>
-          <button className="btn btn-primary mx-1" onClick={handleUpClick}>UpperCase </button>
-          <button className="btn btn-primary mx-1" onClick={handleLowClick}>LowerCase </button>
-          <button className="btn btn-primary mx-1" onClick={handleCopyClick}>Copy Text </button>
-          <button className="btn btn-primary mx-1" onClick={handleClearTextClick}>Clear Text </button>
-          <button className="btn btn-primary mx-1" onClick={handleExtraSpaceClick}>Remove Extra Spaces </button>
+          <button disabled = {text.length === 0} className="btn btn-secondary mx-1 my-1" onClick={handleUndoClick}>Undo </button>
+          <button disabled = {text.length === 0} className="btn btn-secondary mx-1 my-1" onClick={handleRedoClick}>Redo </button>
+          <button disabled = {text.length === 0} className="btn btn-primary mx-1 my-1" onClick={handleUpClick}>UpperCase </button>
+          <button disabled = {text.length === 0} className="btn btn-primary mx-1 my-1" onClick={handleLowClick}>LowerCase </button>
+          <button disabled = {text.length === 0} className="btn btn-primary mx-1 my-1" onClick={handleCopyClick}>Copy Text </button>
+          <button disabled = {text.length === 0} className="btn btn-primary mx-1 my-1" onClick={handleClearTextClick}>Clear Text </button>
+          <button disabled = {text.length === 0} className="btn btn-primary mx-1 my-1" onClick={handleExtraSpaceClick}>Remove Extra Spaces </button>
 
       </div>
     </div>
     <div className='container my-3' style= {{color : props.mode === 'dark'?'white':'#1a3358'}}>
       <h2>Your Text Summary</h2>
       <p>{wordStringCount(text)} words and {text.length} characters </p>
-      <p>{0.08 * text.split(" ").length} minute to read </p>
+      <p>{0.08 * text.split(" ").filter((element)=>{return element.length !== 0}).length} minute to read </p>
       <h3>Preview</h3>
       <p>{text.length>0?text:"Enter something to preview!"}</p>
 
